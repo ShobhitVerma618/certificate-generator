@@ -18,7 +18,7 @@ cloudinary.config(
   api_secret = "2uq-b8O_1WMASu06UY5Kj5WsLmg",
   secure = True
 )
-client = pymongo.MongoClient("mongodb+srv://shobhit:ZZf3ANMALqS0sPZH@cluster0.ejgkzul.mongodb.net/?retryWrites=true&w=majority")
+#client = pymongo.MongoClient("mongodb+srv://shobhit:ZZf3ANMALqS0sPZH@cluster0.ejgkzul.mongodb.net/?retryWrites=true&w=majority")
 
 myFont = ImageFont.truetype('calibri.ttf', size=40)
 
@@ -64,9 +64,9 @@ CORS(app)
 def hello_world():
     data = request.json
     #print(data['name'])
-    p_id = data['id']
+    #p_id = data['id']
     makeCertificate(data)
-    insertIntoDatabase(data)
+    #insertIntoDatabase(data)
     url = uploadImage()
     res = make_response(jsonify({"url": url}))
     res.headers['Access-Control-Allow-Origin'] = '*'
