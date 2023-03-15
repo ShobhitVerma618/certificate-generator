@@ -39,7 +39,7 @@ def makeCertificate(data):
 
     im.save("hello5.png", "PNG")
 
-def uploadImage(p_id):
+def uploadImage():
 
   # Upload the image and get its URL
   # ==============================
@@ -63,10 +63,9 @@ CORS(app)
 def hello_world():
     data = request.json
     #print(data['name'])
-    p_id = data['id']
     makeCertificate(data)
     insertIntoDatabase(data)
-    url = uploadImage(p_id)
+    url = uploadImage()
     res = make_response(jsonify({"url": url}))
     res.headers['Access-Control-Allow-Origin'] = '*'
     return res
