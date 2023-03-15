@@ -10,6 +10,7 @@ import cloudinary.uploader
 import cloudinary.api
 import json
 from flask_cors import CORS
+from waitress import serve
 #Config
 cloudinary.config(
   cloud_name = "dy1hexft1",
@@ -63,9 +64,15 @@ CORS(app)
 def hello_world():
     data = request.json
     #print(data['name'])
+    p_id = data['id']
     makeCertificate(data)
     insertIntoDatabase(data)
     url = uploadImage()
     res = make_response(jsonify({"url": url}))
     res.headers['Access-Control-Allow-Origin'] = '*'
     return res
+
+if __name__ == "__main__":
+    #app.run(host='0.0.0.0')
+    #We now use this syntax to server our app. 
+    serve(app, host='0.0.0.0', port=5000)
